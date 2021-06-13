@@ -89,13 +89,13 @@ In the following subsection, a selection of layout algorithms classified by thei
 
 \begin{figure}
     \centering
-    \includegraphics[scale=0.16]{media/layout_techniques.pdf}
+    \includegraphics[scale=0.14]{media/layout_techniques.pdf}
     \caption{The protein interaction network laid out using the graph embedder (GEM) (a) and Kamada and Kawai's algorithm (b). Modified from \cite{Gibson2013}.}
     \label{fig:layout_techniques}
 \end{figure}
 \subsection{Layout Techniques}
 One of the oldest and most established classes is the family of force-based layouts. In this class spring-electrical and energy based approaches have to be distinguished.\\ 
-The first type makes use of Eades' spring-embedder \cite{Gibson2013}, meaning that nodes are modeled as steel rings and edges as springs. Connected nodes attract each other while all other nodes repel. After initializing the system with a random state, the attracting and repulsive forces and the system's temperature are repeatedly calculated to update node positions until the system reaches an equilibrium. Although this approach was only intended to work for small graphs (< 50 nodes), many adaptions have been made that tried to improve both run-time and the resulting layout. Among other adaptions, for instance, Fruchterman and Reingold\cite{Fruchterman1991} sped up their algorithm by only considering neighbouring nodes within a certain radius for the force calculation and the graph embedder algorithm (GEM) additionally considered gravitational forces and moreover introduced a local temperature that determines how far a node can travel in a single iteration \cite{Gibson2013}.\\
+The first type makes use of Eades' spring-embedder \cite{Gibson2013}, meaning that nodes are modeled as steel rings and edges as springs. Connected nodes attract each other while all other nodes repel. After initializing the system with a random state, the attracting and repulsive forces and the system's temperature are repeatedly calculated to update node positions until the system reaches an equilibrium. Although this approach was only intended to work for small graphs (< 50 nodes), many adaptions have been made that tried to improve both run-time and the resulting layout. Among other adaptions, for instance, Fruchterman and Reingold\cite{Fruchterman1991} sped up their algorithm by only considering neighbouring nodes within a certain radius for the force calculation and the graph embedder algorithm (GEM) \cite{Frick1995} additionally considered gravitational forces and moreover introduced a local temperature that determines how far a node can travel in a single iteration \cite{Gibson2013}.\\
 Energy based approaches also utilize Eades' spring-embedder but consider the layout task as an optimisation problem in which an energy function that contains the desired properties of the layout has to be minimized \cite{Gibson2013}. For Example Kamada and Kawai \cite{Kamada1989} try to approximate the layouts' Euclidean distance with their graph-theoretic distance (the shortest path length between two vertices). Symmetry is the main goal of their approach and consequently their cost function measures the lack of it.
 Visual examples for the mentioned algorithms can be found in \autoref{fig:layout_techniques}.\\
 Despite the various adaptions and run-time improvements, this class of algorithms still isn't suited for large and dense graphs.\cite{Gibson2013} \cite{VonLandesberger2011}.
@@ -108,7 +108,7 @@ Besides these rather established techniques also non standard algorithms such as
 
 \begin{figure}
     \centering
-    \includegraphics{media/space_filling_trees.pdf}
+    \includegraphics[scale=1]{media/space_filling_trees.pdf}
     \caption{Examples for space filling tree visualizations while using the principle of a) enclosure and b) adjacency. Taken from \cite{VonLandesberger2011}.}
     \label{fig:space_filling_trees}
 \end{figure}
@@ -155,7 +155,7 @@ All previously presented techniques have issues with large graphs either due to 
 
 \begin{figure}
     \centering
-    \includegraphics[scale=0.9]{media/airline_edge_bundling.pdf}
+    \includegraphics[scale=0.88]{media/airline_edge_bundling.pdf}
     \caption{Comparison of a general bundling algorithm (FDEB, a) and a bundling algorithm for directed graphs (DEB, b) applied on the US airlines graph ($|V| = 235, |E| = 2101$). Taken from\cite{Lhuillier2017}.}
     \label{fig:airline_edge_bundling}
 \end{figure}
@@ -170,13 +170,13 @@ Finally bundled edges can also be smoothed, commonly achieved by applying Laplac
 
 \begin{figure}
     \centering
-    \includegraphics[scale=0.9]{media/blending.pdf}
+    \includegraphics[scale=0.82]{media/blending.pdf}
     \caption{A graph drawn with opacity blending (right) and without (left). Taken from \cite{Lhuillier2017}.}
     \label{fig:blending}
 \end{figure}
 \begin{figure}
     \centering
-    \includegraphics[scale=0.7]{media/faithfullness_bundling.pdf}
+    \includegraphics[scale=0.65]{media/faithfullness_bundling.pdf}
     \caption{A pseudo-random graph visualized without simplification (a) and an exemplary bundling (b). Taken from \cite{Lhuillier2017}.}
     \label{fig:faithfulness}
 \end{figure}
@@ -190,12 +190,12 @@ For this purpose, a range of user interaction techniques exists that enable the 
 
 \begin{figure}
     \centering
-    \includegraphics[scale=0.8]{media/edge_lense.pdf}
+    \includegraphics[scale=0.7]{media/edge_lense.pdf}
     \caption{Example of edge lens interaction. (a) Original view without lens. (b) Using edge lens. Taken from \cite{VonLandesberger2011}.}
     \label{fig:edge_lense}
 \end{figure}
 \section{User Interaction}
-The most traditional tools of user interaction are zoom and pan. Zooming can take two forms: Geometric zooming simply blows up the graph content while semantic zooming also changes the content by adding details\cite{Herman2000}. To generate different level of detail for the latter, aggregation techniques as described in section 3.1 can be used. Panning on the other hand allows the user to translate the plot to different viewpoints in a zoomed in graph. For node-link diagrams panning is often implemented to move along the graph's edges (guided panning) to properly explore the graph's structure \cite{VonLandesberger2011}.\\ 
+The most traditional tools of user interaction are zoom and pan. Zooming can take two forms: Geometric zooming simply blows up the graph content while semantic zooming also changes the content by adding details\cite{Herman2000}. To generate different level of detail for the latter, aggregation techniques as described in section 3.1 can be used. Panning on the other hand allows the user to translate the plot to different viewpoints in a zoomed in graph. For node-link diagrams panning is often implemented to move along the graph's edges (guided panning) to properly explore the graph's structure \cite{VonLandesberger2011}.
 While zooming can help to focus on a specific part of the data, contextual information is lost in the process, which makes it hard to fully understand the displayed information. To solve this issue a technique often referred to as magic-lense \cite{VonLandesberger2011} or focus+context \cite{Herman2000} can be used. The main idea is to highlight an area of interest by assigning more space to the data within it and distorting the surrounding. This idea can be applied to node-link diagrams as well as space-filling techniques and also allows the user to select multiple areas of focus. For geometric changes this technique is called fisheye views \cite{VonLandesberger2011}. These so-called lenses can be either applied to the entire graph data within the selected area or just the edges (edge lenses). Edge lenses help to declutter strongly overlapping edges in graphs that try to minimize node repositioning (e.g. geographic-based graphs as in \autoref{fig:edge_lense}). Other approaches use edge-filtering in the focused area or move neighbouring nodes closer to a highlighted vertex.\\
 In addition to modifying the final result of a graph visualization, users can also adjust the underlying visualization type and its parameters. Typical changes to visual parameters are highlighting of interesting items, which is often synchronized across multiple views of the same graph, or changes to the visual schemes layout or representation. Layout adaptions can be either changes to the layout type that are followed by an automatic recalculation or manual movement of nodes. User can also select a different visual representation, e.g. switching from a node-link diagram to a matrix representation, which can provide new insights. If applicable, smooth animations should be used to make the transformations comprehensible \cite{VonLandesberger2011}.
 
